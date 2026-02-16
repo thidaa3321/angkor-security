@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-slate-200 font-sans antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-orange-700 rounded-full;
+  }
+
+  ::selection {
+    @apply bg-orange-500/30 text-white;
+  }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-orange-500 text-white font-rajdhani font-bold
+           text-sm tracking-widest uppercase px-7 py-3 rounded
+           transition-all duration-200 relative overflow-hidden
+           hover:bg-orange-400 hover:-translate-y-0.5
+           hover:shadow-orange-glow active:translate-y-0
+           disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 translate-x-[-100%]
+           bg-gradient-to-r from-transparent via-white/15 to-transparent
+           transition-transform duration-500;
+  }
+  .btn-primary:hover::before {
+    @apply translate-x-full;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-orange-500 border border-orange-500
+           font-rajdhani font-bold text-sm tracking-widest uppercase
+           px-7 py-3 rounded transition-all duration-200
+           hover:bg-orange-500/10 hover:-translate-y-0.5
+           active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-slate-400 font-rajdhani font-semibold
+           text-sm tracking-wider uppercase px-4 py-2 rounded
+           transition-colors duration-200 hover:text-white;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-bg-card border border-border rounded-lg
+           transition-all duration-300
+           hover:border-border-bright hover:-translate-y-1
+           hover:shadow-card-hover;
+  }
+
+  .card-featured {
+    @apply card border-orange-500/40 shadow-[0_0_40px_rgba(255,107,0,0.12)];
+  }
+
+  /* ── Section Labels ── */
+  .section-label {
+    @apply font-mono text-xs text-orange-500 tracking-[0.2em] uppercase
+           flex items-center gap-3 mb-3;
+  }
+  .section-label::after {
+    content: '';
+    @apply flex-1 h-px bg-border;
+  }
+
+  .section-title {
+    @apply font-rajdhani font-bold text-4xl md:text-5xl text-white leading-tight;
+  }
+
+  /* ── Nav Links ── */
+  .nav-link {
+    @apply font-rajdhani font-semibold text-sm tracking-widest text-slate-400
+           uppercase transition-colors duration-200 cursor-pointer
+           relative pb-0.5 hover:text-orange-500 border-none bg-transparent;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-orange-500
+           transition-all duration-300;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  .nav-link.active {
+    @apply text-orange-500;
+  }
+
+  /* ── Badges ── */
+  .badge-critical {
+    @apply font-mono text-[10px] font-bold tracking-widest uppercase
+           px-2 py-0.5 rounded-sm
+           bg-red-500/15 text-red-400 border border-red-500/30;
+  }
+  .badge-high {
+    @apply font-mono text-[10px] font-bold tracking-widest uppercase
+           px-2 py-0.5 rounded-sm
+           bg-orange-500/15 text-orange-400 border border-orange-500/30;
+  }
+  .badge-info {
+    @apply font-mono text-[10px] font-bold tracking-widest uppercase
+           px-2 py-0.5 rounded-sm
+           bg-slate-500/15 text-slate-400 border border-slate-500/30;
+  }
+
+  /* ── Inputs ── */
+  .form-input {
+    @apply w-full bg-white/[0.04] border border-border text-slate-200
+           font-sans text-sm px-4 py-3 rounded outline-none
+           transition-all duration-200 placeholder:text-slate-600
+           focus:border-orange-500 focus:bg-orange-500/[0.04];
+  }
+
+  /* ── Grid background ── */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,107,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,107,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* ── Terminal ── */
+  .terminal-window {
+    @apply bg-[#0a0c10] border border-border-bright rounded-xl overflow-hidden
+           shadow-[0_24px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(255,107,0,0.08)];
+  }
+
+  .terminal-header {
+    @apply bg-[#111418] px-4 py-3 flex items-center gap-2
+           border-b border-orange-500/10;
+  }
+
+  /* ── Glitch text ── */
+  .glitch {
+    @apply relative inline-block;
+  }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    @apply absolute inset-0;
+  }
+  .glitch::before {
+    animation: glitch1 3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    color: #FF6B00;
+    transform: translate(-2px, -2px);
+  }
+  .glitch::after {
+    animation: glitch2 3s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    color: #60a5fa;
+    transform: translate(2px, 2px);
+  }
+
+  /* ── Price tab ── */
+  .price-tab {
+    @apply font-rajdhani font-semibold text-sm tracking-widest uppercase
+           cursor-pointer px-5 py-2.5 rounded transition-all duration-200
+           border text-slate-400 bg-transparent border-transparent
+           hover:border-border-bright hover:text-slate-200;
+  }
+  .price-tab.active {
+    @apply bg-orange-500 text-white border-orange-500;
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    @apply border-b border-border;
+  }
+  .faq-question {
+    @apply w-full text-left bg-transparent border-none cursor-pointer
+           text-slate-200 font-sans text-base font-medium
+           py-5 flex justify-between items-center gap-4
+           transition-colors duration-200 hover:text-orange-500;
+  }
+}
+
+/* ── Keyframes (can't be in @layer) ── */
+@keyframes glitch1 {
+  0%, 90%, 100% { opacity: 0; transform: translate(-2px, -2px); }
+  92%           { opacity: 1; }
+}
+@keyframes glitch2 {
+  0%, 90%, 100% { opacity: 0; transform: translate(2px, 2px); }
+  93%           { opacity: 1; }
+}
