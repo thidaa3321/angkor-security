@@ -10,7 +10,7 @@
     "lint": "eslint src --ext ts,tsx"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.3.2",
+    "@emailjs/browser": "^4.4.1",
     "@types/react-scroll": "^1.8.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

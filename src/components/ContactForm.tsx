@@ -71,7 +71,14 @@ export function ContactForm({ onToast }: ContactFormProps) {
         type: 'error',
       })
     } finally {
-      if (formState !== 'success') setFormState('idle')
+
+      catch (err) {
+        setFormState('error');
+        // ... toast logic
+      } finally {
+        // If we didn't succeed, go back to idle so they can try again
+        setFormState(prev => prev === 'success' ? 'success' : 'idle');
+      }
     }
   }
 
